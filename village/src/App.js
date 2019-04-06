@@ -46,6 +46,18 @@ class App extends Component {
         </nav>
 
         <Route
+          path = "/smurf-form"
+          render = {props =>
+            <SmurfForm
+              {...props}
+              smurfs = {this.state.smurfs}
+            />
+          }
+
+        />
+
+
+        <Route
           path = "/"
           render = {props =>
             <Smurfs
@@ -56,16 +68,6 @@ class App extends Component {
         />
 
 
-      <Route
-        path = "/smurf-form"
-        render = {props =>
-          <SmurfForm
-            {...props}
-          />
-        }
-
-      />
-      
       </div>
     );
   }
