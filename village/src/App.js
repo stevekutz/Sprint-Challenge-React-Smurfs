@@ -70,7 +70,7 @@ class App extends Component {
         console.log(err);
       })
   };
-
+/*
   deleteSmurf = (e, id) => {
     e.preventDefault();
     console.log(">>>> check deleteSmurf id ", this.props);
@@ -85,7 +85,7 @@ class App extends Component {
         console.log(err);
       })
   };
-
+*/
 
   setUpdateForm = (e, smurf) => {
     console.log("setUpdateForm friend is ", smurf);
@@ -111,7 +111,7 @@ class App extends Component {
             <Smurf
               {...props}
               smurfs = {this.state.smurfs}
-              deleteSmurf = {this.deleteSmurf}
+            //  deleteSmurf = {this.deleteSmurf}
               setUpdateForm = {this.setUpdateForm}
             />
           )}
