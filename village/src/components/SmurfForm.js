@@ -29,9 +29,6 @@ class SmurfForm extends Component {
   }
 
 
-
-
-
  /*
   constructor(props) {
     super(props);
@@ -124,6 +121,7 @@ class SmurfForm extends Component {
   render() {
     return (
       <div className="SmurfForm">
+        <div>{`${this.props.activeSmurf ? 'Update Current' : 'Add A New '} SMURF`} </div>
         <form onSubmit={this.handleSubmit}>
           <input
             onChange={this.handleInputChange}
@@ -143,7 +141,18 @@ class SmurfForm extends Component {
             value={this.state.height}
             name="height"
           />
-          <button type="submit">Add to the village</button>
+
+          <button type = "submit">
+            {`${this.props.activeSmurf
+              ? 'Update'
+              : 'Add'
+              }  a SMURF `}
+
+          </button>
+
+
+
+
         </form>
       </div>
     );
