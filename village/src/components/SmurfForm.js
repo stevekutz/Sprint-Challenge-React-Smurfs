@@ -2,6 +2,37 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class SmurfForm extends Component {
+  state = {
+    smurf: this.props.activeSmurf || {
+      name: '',
+      age: '',
+      height: '',
+
+    }
+  };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log(">>>>> CDU prevProps", prevProps);
+    console.log(">>>>> CDU prevState", prevState);
+    console.log(">>>>> CDU snapshot", snapshot);
+
+    if(
+      this.props.activeSmurf && prevProps.activeSmurf
+      !== this.props.activeSmurf
+
+    ) {
+      this.setState({
+        friend: this.props.activeSmurf
+      })
+    }
+
+  }
+
+
+
+
+
+ /*
   constructor(props) {
     super(props);
     this.state = {
@@ -10,6 +41,8 @@ class SmurfForm extends Component {
       height: ''
     };
   }
+
+
 
   addSmurf = event => {
     //event.preventDefault();
@@ -39,18 +72,59 @@ class SmurfForm extends Component {
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
 
-
-
-
-
     console.log("e.target.name",e.target.name );
     console.log("e.target.value", e.target.value);
   };
 
+
+  */
+
+  handleInputChange = ev => {
+    ev.persist();
+
+    let value = ev.target.value;
+
+    if(ev.target.name === 'age') {
+      value = parseInt(value, 10);
+    }
+
+    // use prevSTATE !!!!!!
+    this.setState(prevState => ({
+      smurf: {
+        ...prevState.smurf,
+        [ev.target.name]: value
+      }
+    }))
+
+  };
+
+  handleSubmit = e => {
+    if(this.props.activeSmurf) {
+      this.props.updateSmurf(e, this.state.smurf)
+    } else {
+      this.props.addSmurfBetter(e, this.state.smurf)
+    }
+    this.setState({
+      friend: {
+        name: '',
+        age: '',
+        height: '',
+
+      }
+
+
+    })
+  };
+
+
+
+
+
+
   render() {
     return (
       <div className="SmurfForm">
-        <form onSubmit={this.addSmurf}>
+        <form onSubmit={this.handleSubmit}>
           <input
             onChange={this.handleInputChange}
             placeholder="name"

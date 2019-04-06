@@ -11,6 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeSmurf: null,
       smurfs: [],
       error: '',
 
@@ -35,6 +36,23 @@ class App extends Component {
 
   }
 
+  addSmurfBetter = (e, smurf) => {
+    e.preventDefault();
+
+    if( smurf.name && smurf.age && smurf.height) {
+      axios
+        .post('http://localhost:3333/smurfs', smurf)
+        .then(res => {
+          this.setState({ smurfs: res.data })
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    } else {
+      console.log("You entered no smurf info")
+    }
+  };
+
 
   render() {
     return (
@@ -50,6 +68,9 @@ class App extends Component {
           render = {props =>
             <SmurfForm
               {...props}
+              activeSmurf = {this.state.activeSmurf}
+              addSmurfBetter = {this.addSmurfBetter}
+
               smurfs = {this.state.smurfs}
             />
           }
