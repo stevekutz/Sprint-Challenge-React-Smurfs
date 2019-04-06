@@ -39,8 +39,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SmurfForm />
 
+        <nav>
+          <NavLink exact to = "/"> Smurf Village</NavLink>
+          <NavLink to = "/smurf-form"> Add a Smurf!</NavLink>
+        </nav>
 
         <Route
           path = "/"
@@ -53,6 +56,16 @@ class App extends Component {
         />
 
 
+      <Route
+        path = "/smurf-form"
+        render = {props =>
+          <SmurfForm
+            {...props}
+          />
+        }
+
+      />
+      
       </div>
     );
   }
