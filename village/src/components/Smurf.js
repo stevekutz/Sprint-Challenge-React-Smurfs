@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const Smurf = props => {
   return (
@@ -9,6 +10,9 @@ const Smurf = props => {
     </div>
   );
 };
+
+
+
 
 Smurf.defaultProps = {
   name: '',
